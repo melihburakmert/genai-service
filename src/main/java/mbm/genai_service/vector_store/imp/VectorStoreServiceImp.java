@@ -26,6 +26,7 @@ public class VectorStoreServiceImp implements VectorStoreService {
         this.vectorStore = vectorStore;
     }
 
+    // This should be per user session
     @Override
     public void addLyrics(final LyricsDataDto lyricsDataDto) {
         final List<LyricsDto> lyrics = lyricsDataDto.lyrics();
