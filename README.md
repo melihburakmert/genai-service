@@ -9,6 +9,7 @@ Currently only the Vertex AI models from Google are supported.
 - Vertex AI Gemini
 - Text generation, Text embeddings, Multimodal processing
 - Google Cloud PubSub
+- Redis
 - Docker
 - Maven
 - Modulith Architecture
@@ -18,7 +19,13 @@ Currently only the Vertex AI models from Google are supported.
 
 - POST 
 `/genai/describe-image` \
-`Content-Type: multipart/form-data`
+`Content-Type: multipart/form-data` \
+`X-Session-ID: <session-id>` \
+
+
+- GET
+`/genai/caption` \
+`X-Session-ID: <session-id>` \
 
 ## Running in Docker locally:
 
@@ -28,9 +35,7 @@ Currently only the Vertex AI models from Google are supported.
   `docker-compose up -d genai-service`
 
 ### TODO:
-
-- [ ] Implement caption generation
-- [ ] Publish to PubSub topic 'lyrics'
+- [ ] Use Redis for vector storage
 - [ ] Add tests
 - [ ] Add CI/CD
 - [ ] Deploy on Kubernetes
