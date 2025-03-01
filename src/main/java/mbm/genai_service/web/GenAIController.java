@@ -29,14 +29,14 @@ public class GenAIController {
     @PostMapping(value = "/image-description", consumes = "multipart/form-data")
     public ResponseEntity<String> describeImage(
             @RequestParam("image") final MultipartFile image,
-            @RequestHeader(value = "X-Session-Id") final String sessionId) {
+            @RequestHeader(value = "X-Session-Id", defaultValue = "test") final String sessionId) {
         final String description = imageAnalysisService.getImageDescription(image, sessionId);
         return ResponseEntity.ok().body(description);
     }
 
     // To be polled by the client
     @GetMapping(value = "/caption")
-    public ResponseEntity<String> getCaption(@RequestHeader(value = "X-Session-Id") final String sessionId) {
+    public ResponseEntity<String> getCaption(@RequestHeader(value = "X-Session-Id", defaultValue = "test") final String sessionId) {
         return Optional.ofNullable(captionService.getCaption(sessionId))
                 .map(caption -> ResponseEntity.ok().body(caption))
                 .orElse(ResponseEntity.accepted().build());
